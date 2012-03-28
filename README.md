@@ -28,14 +28,17 @@ together a template that can be used to deploy a basic Go application.
     git remote add upstream -m master git://github.com/gcmurphy/golang-openshift.git  
     git pull -s recursive -X theirs upstream master
 
+5. Build the source and copy the output to your bin directory (updated for Go version 1)
+    
+    cd server
+    go build 
+    mv server ../bin
+
 5. Push to your OpenShift repository
    
+    git commit -a -m "My first go + openshift application" 
     git push
 
-6. You are good to Go! You can read more about the OpenShift DIY cartridge [here](https://www.redhat.com/openshift/community/blogs/a-paas-that-runs-anything-http-getting-started-with-diy-applications-on-openshift). For 
-conveinence sake you can just run: 
 
-    make clean  
-    make deploy
+6. You are good to Go! You can read more about the OpenShift DIY cartridge [here](https://www.redhat.com/openshift/community/blogs/a-paas-that-runs-anything-http-getting-started-with-diy-applications-on-openshift). 
 
-To push it out changes to the cloud.
