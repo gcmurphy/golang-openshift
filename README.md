@@ -17,15 +17,16 @@ together a template that can be used to deploy a basic Go application.
 
 2. Create a new domain
 
-    rhc-create-domain --namespace <your-namespace> --rhlogin <your-login>
+    rhc-create-domain --namespace *your-namespace* --rhlogin *your-login*
 
 3. Create a new application 
 
-    rhc-create-app --app <your-appname> --type diy-0.1 --rhlogin <your-login>
+    rhc-create-app --app *your-appname* --type diy-0.1 --rhlogin *your-login*
 
 4. Add this as an upstream repository
 
-    git remote add upstream -m master git://github.com/gcmurphy/golang-openshift.git
+    git remote add upstream -m master git://github.com/gcmurphy/golang-openshift.git  
+    git pull -s recursive -X theirs upstream master
 
 5. Push to your OpenShift repository
    
