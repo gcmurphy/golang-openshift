@@ -30,13 +30,13 @@ together a template that can be used to deploy a basic Go application.
 
 5. Build the source and copy the output to your bin directory (updated for Go version 1)
     
-    cd server
-    go build 
-    mv server ../bin
+    cd server  
+    go build   
+    mv server ../bin  
 
 5. Push to your OpenShift repository
    
-    git commit -a -m "My first go + openshift application" 
+    git commit -a -m "My first go + openshift application"   
     git push
 
 
