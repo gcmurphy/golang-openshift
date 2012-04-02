@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Openshift - Go by gcmurphy</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/gcmurphy/golang-openshift">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/gcmurphy/golang-openshift/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/gcmurphy/golang-openshift/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Openshift - Go</h1>
+          <p>Template for running Go programs on OpenShift</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/gcmurphy">gcmurphy</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>How to Run Go on OpenShift</h1>
+
+<p>OpenShift is a great PaaS offering by Red Hat. At the moment 
+Go is not currently on the supported platform list. However Red Hat 
+have kindly provided a DIY cartridge to run whatever you want on the 
+platform. As Go is one of my favourite languages I thought I'd put 
+together a template that can be used to deploy a basic Go application. </p>
+
+<ol>
+<li><p>Create a OpenShift account. Go to <a href="http://openshift.redhat.com">http://openshift.redhat.com</a> to create an account.</p></li>
+<li>
+<p>Install the OpenShift client tools. </p>
+
+<p>cd /etc/yum.repos.d<br>
+sudo wget <a href="https://openshift.redhat.com/app/repo/openshift.repo">https://openshift.redhat.com/app/repo/openshift.repo</a><br>
+sudo yum install rhc</p>
+</li>
+<li>
+<p>Create a new domain</p>
+
+<p>rhc-create-domain --namespace <em>your-namespace</em> --rhlogin <em>your-login</em></p>
+</li>
+<li>
+<p>Create a new application </p>
+
+<p>rhc-create-app --app <em>your-appname</em> --type diy-0.1 --rhlogin <em>your-login</em></p>
+</li>
+<li>
+<p>Add this as an upstream repository</p>
+
+<p>git remote add upstream -m master git://github.com/gcmurphy/golang-openshift.git<br>
+git pull -s recursive -X theirs upstream master</p>
+</li>
+<li>
+<p>Build the source and copy the output to your bin directory (updated for Go version 1)</p>
+
+<p>cd server<br>
+go build<br>
+mv server ../bin  </p>
+</li>
+<li>
+<p>Push to your OpenShift repository</p>
+
+<p>git commit -a -m "My first go + openshift application"<br>
+git push</p>
+</li>
+<li><p>You are good to Go! You can read more about the OpenShift DIY cartridge <a href="https://www.redhat.com/openshift/community/blogs/a-paas-that-runs-anything-http-getting-started-with-diy-applications-on-openshift">here</a>. </p></li>
+</ol>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
