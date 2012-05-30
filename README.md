@@ -42,3 +42,36 @@ together a template that can be used to deploy a basic Go application.
 
 6. You are good to Go! You can read more about the OpenShift DIY cartridge [here](https://www.redhat.com/openshift/community/blogs/a-paas-that-runs-anything-http-getting-started-with-diy-applications-on-openshift). 
 
+A note on cross compiling
+-------------------------
+
+This skeleton project depends on the fact that the OpenShift images that 
+are deployed are running on Linux x86_64 virtual machines. However the 
+OpenShift toolkit is available for both Windows and Mac OSX. In order 
+to use this toolkit on these platforms the following additional steps need 
+to be used to create a cross compiler for the non Linux development environments: 
+
+
+1. Get the latest release of the Go source code. 
+
+    wget http://go.googlecode.com/files/go1.0.1.src.tar.gz
+
+2. Extract the source code and compile it, targeting the Linux platform and architecture
+    
+    tar xzvf go*.tar.gz  
+    cd go/src  
+    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 ./make.bash  
+
+3. If everything worked you should see:
+
+    Installed Go for linux/amd64 in _Your build directory_   
+    Installed commands in _Your build directory/bin_
+    
+4. Try to build the project now using the go compiler we just created 
+
+    cd golang-openshift/server  
+    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 ~/xcompile/go/bin/go build  
+    
+The output file will run on a Linux AMD64 box but not locally which is 
+a bit of an annoyance. The alternative would be to create a copy of the 
+Go runtime on the Linux machine and compile the code remotely. 
